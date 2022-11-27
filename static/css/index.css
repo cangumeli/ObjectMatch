@@ -267,3 +267,12 @@ model-viewer {
 .PairTitle {
   font-size: 18.5px;
 }
+
+.MethodContent {
+  flex: none;
+  width: 95%;
+}
+
+#pipeline {
+  width: 90%;
+}

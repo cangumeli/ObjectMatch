@@ -5,6 +5,7 @@ var NUM_INTERP_FRAMES = 240;
 
 var interp_images = [];
 function preloadInterpolationImages() {
+  return null;
   for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
     var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
     interp_images[i] = new Image();
@@ -13,6 +14,8 @@ function preloadInterpolationImages() {
 }
 
 function setInterpolationImage(i) {
+  return null;
+
   var image = interp_images[i];
   image.ondragstart = function() { return false; };
   image.oncontextmenu = function() { return false; };
@@ -21,6 +24,7 @@ function setInterpolationImage(i) {
 
 
 $(document).ready(function() {
+  return null;
     // Check for click events on the navbar burger icon
     $(".navbar-burger").click(function() {
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
@@ -112,6 +116,13 @@ function switchToPrev() {
 }
 
 window.onload = () => {
+  var pairVideos = document.getElementsByClassName('VideoPair');
+  console.error(pairVideos);
+  Array.from(pairVideos).forEach(function (element) {
+    console.error(element);
+    element.playbackRate = 2.0;
+    element.play();
+  });
   return null;
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     // document.getElementById('videoSpan').hidden = true;

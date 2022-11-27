@@ -278,8 +278,8 @@
 </div>
 </section>
 
-<section class="teaser">
-  <div class="container is-max-desktop is-centered has-text-centered">
+<section class="section">
+  <div class="container is-max-desktop">
     <div class="body">
       <!-- <span id="videoSpan">
         <video autoplay muted autoplay loop  loop id="shortVideo" controls>
@@ -288,13 +288,19 @@
         </video>
       <br /><br />
       </span> -->
-      <h2 class="title is-3">Method Overview</h2>
-      <img src="static/images/pipeline.jpg" />
-      <br />
-      <div class="content has-text-justified">
-        <p>
-        Overview of our approach to incorporate object correspondence grounding in global pose estimation. From a set of input RGB- D frames, ObjectMatch predicts object instances for each frame with dense normalized object correspondences. The predicted object instances are used to identify objects across frames, forming indirect object correspondences. We combine object correspondences with an RGB-D version of SuperGlue [<a href="https://psarlin.com/superglue/">SuperGlue</a>, <a href="https://graphics.stanford.edu/projects/bundlefusion/">BundleFusion</a>] keypoint matches in a joint energy optimization that yields both camera and object poses in a global registration.
-       </p>
+      <div class="columns is-centered has-text-centered">
+        <div class="column MethodContent">
+          <h2 class="title is-3">Method Overview</h2>
+          <img src="static/images/pipeline.jpg" />
+          <div class="content has-text-justified">
+            <p>
+            Overview of our approach to incorporate object correspondence grounding
+            in global pose estimation. From a set of input RGB- D frames, ObjectMatch predicts object instances for each frame with dense normalized object correspondences. The predicted object instances are used to identify objects across frames, forming indirect object correspondences.
+            We combine object correspondences with an RGB-D version of SuperGlue [<a href="https://psarlin.com/superglue/">SuperGlue</a>, <a href="https://graphics.stanford.edu/projects/bundlefusion/">BundleFusion</a>] keypoint matches in a joint energy optimization that yields both camera
+            and object poses in a global registration.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -317,7 +323,7 @@
           </div>
           <h4 class="PairTitle">A chair from the back and from the side</h4>
           <span class="VideoSpanPair">
-            <video class="VideoPair" muted autoplay loop  controls>
+            <video class="VideoPair" muted loop  controls>
               <source src="static/videos/pair_1.mp4"
                       type="video/mp4">
             </video>
@@ -325,7 +331,7 @@
 
           <h4 class="PairTitle">A table (desk) from the side and from the front</h4>
           <span class="VideoSpanPair">
-            <video class="VideoPair" muted autoplay loop  controls>
+            <video class="VideoPair" muted loop  controls>
               <source src="static/videos/pair_2.mp4"
                       type="video/mp4">
             </video>
@@ -333,7 +339,7 @@
           
          <h4 class="PairTitle">A chair from the front-left and from the top</h4>
          <span class="VideoSpanPair">
-            <video class="VideoPair" muted autoplay loop  controls>
+            <video class="VideoPair" muted loop  controls>
               <source src="static/videos/pair_3.mp4"
                       type="video/mp4">
             </video>
@@ -341,7 +347,7 @@
 
           <h4 class="PairTitle">A cabinet from the top and from the front-left</h4>
           <span class="VideoSpanPair">
-            <video class="VideoPair" muted autoplay loop  controls>
+            <video class="VideoPair" muted loop  controls>
               <source src="static/videos/pair_4.mp4"
                       type="video/mp4">
             </video>
