@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ObjectMatch estimates camera poses using canonical object correspondences">
+  <meta name="keywords" content="ObjectMatch, SLAM, Registration">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ObjectMatch: Robust Registration using Canonical Object Correspondences</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.niessnerlab.org/members/can_guemeli/profile.html">Can Gümeli</a>,</span>
+            <span class="author-block">
+              <a href="https://www.3dunderstanding.org/">Angela Dai</a>,</span>
+            <span class="author-block">
+              <a href="https://www.niessnerlab.org/">Matthias Niessner</a>
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Technical University of Munich</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/CVPR2022/html/Gumeli_ROCA_Robust_CAD_Model_Retrieval_and_Alignment_From_a_Single_CVPR_2022_paper.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>CVPR Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/cangumeli/ROCA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop is-centered has-text-centered">
+    <div class="body">
+      <!-- <span id="videoSpan">
+        <video autoplay muted autoplay loop  loop id="shortVideo" controls>
+          <source src="./static/videos/overlay_new.mp4"
+                  type="video/mp4">
+        </video>
+      <br /><br />
+      </span> -->
+      <img src="static/images/teaser.jpg" />
+      <br />
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">ObjectMatch</span> estimates camera and object poses from two or more RGB-D images by leveraging object correspondences.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <video id="short_video" autoplay muted autoplay loop  loop height="100%">
+        <source src="./static/videos/overlay_new.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted autoplay loop  loop height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present ObjectMatch, a semantic and object-centric camera pose estimation for RGB-D SLAM pipelines. Modern camera pose estimators rely on direct correspondences of overlapping regions between frames; however, they cannot align camera frames with little or no overlap. In this work, we propose to leverage indirect correspondences obtained via semantic object identification. For instance, when an object is seen from the front in one frame and from the back in another frame, we can provide additional pose constraints through canonical object correspondences. We first propose a neural network to predict such correspondences on a per-pixel level, which we then combine in our energy formulation with state-of-the-art keypoint matching solved with a joint Gauss-Newton optimization. In a pairwise setting, our method improves registration recall of state-of-the-art feature matching from 77% to 87% overall and from 21% to 52% in pairs with 10% or less inter-frame overlap. In registering RGB-D sequences, our method outperforms cutting-edge SLAM baselines in challenging, low frame-rate scenarios, achieving more than 35% reduction in trajectory error in multiple scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/YUGv-6W--qc"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+</div>
+</section>
+
+<section class="teaser">
+  <div class="container is-max-desktop is-centered has-text-centered">
+    <div class="body">
+      <!-- <span id="videoSpan">
+        <video autoplay muted autoplay loop  loop id="shortVideo" controls>
+          <source src="./static/videos/overlay_new.mp4"
+                  type="video/mp4">
+        </video>
+      <br /><br />
+      </span> -->
+      <h2 class="title is-3">Method Overview</h2>
+      <img src="static/images/pipeline.jpg" />
+      <br />
+      <div class="content has-text-justified">
+        <p>
+        Overview of our approach to incorporate object correspondence grounding in global pose estimation. From a set of input RGB- D frames, ObjectMatch predicts object instances for each frame with dense normalized object correspondences. The predicted object instances are used to identify objects across frames, forming indirect object correspondences. We combine object correspondences with an RGB-D version of SuperGlue [<a href="https://psarlin.com/superglue/">SuperGlue</a>, <a href="https://graphics.stanford.edu/projects/bundlefusion/">BundleFusion</a>] keypoint matches in a joint energy optimization that yields both camera and object poses in a global registration.
+       </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pairwise Registration Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We show very low-overlap frame pairs where feature matching fails,
+            while our method can still estimate camera poses using object correspondences
+            in the videos below. On the left, an overlay of top-1 object matching
+            and canonical correspondences appear. Then, on the right, the RGB-D registration with camera poses and top-1 matching
+            object pose appears.
+          </p>
+          </div>
+          <h4 class="PairTitle">A chair from the back and from the side</h4>
+          <span class="VideoSpanPair">
+            <video class="VideoPair" muted autoplay loop  controls>
+              <source src="static/videos/pair_1.mp4"
+                      type="video/mp4">
+            </video>
+          </span><br /><br/>
+
+          <h4 class="PairTitle">A table (desk) from the side and from the front</h4>
+          <span class="VideoSpanPair">
+            <video class="VideoPair" muted autoplay loop  controls>
+              <source src="static/videos/pair_2.mp4"
+                      type="video/mp4">
+            </video>
+          </span><br /><br/>
+          
+         <h4 class="PairTitle">A chair from the front-left and from the top</h4>
+         <span class="VideoSpanPair">
+            <video class="VideoPair" muted autoplay loop  controls>
+              <source src="static/videos/pair_3.mp4"
+                      type="video/mp4">
+            </video>
+          </span><br /><br/>
+
+          <h4 class="PairTitle">A cabinet from the top and from the front-left</h4>
+          <span class="VideoSpanPair">
+            <video class="VideoPair" muted autoplay loop  controls>
+              <source src="static/videos/pair_4.mp4"
+                      type="video/mp4">
+            </video>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">SLAM Sequence Registration Results</h2>
+            <div class="content has-text-justified">
+              <p>
+                We show SLAM reconstructions in low frame-rate <a href="https://vision.in.tum.de/data/datasets/rgbd-dataset">TUM-RGBD</a> scenes @ 1Hz
+                and <a href="http://www.scan-net.org/">ScanNet</a> scenes @ 1.5Hz.
+                In the below videos, we first show an animated sequence reconstruction on the left. We then show
+                two object-based loop closures that our method detects while classical feature matching misses.
+              </p>
+              <br />
+              </div>
+              <h4 class="SLAMTitle"><b>TUM-RGBD Freiburg 3 Long Office @ 1HZ</b></h4>
+              <span class="VideoSpanPair">
+                <video class="VideoSLAM" muted autoplay loop  controls>
+                  <source src="static/videos/SLAM_1.mp4"
+                          type="video/mp4">
+                </video>
+              </span><br /><br/><br/>
+              
+              <h4 class="SLAMTitle"><b>ScanNet 0169_00 @ 1.5Hz</b></h4>
+              <span class="VideoSpanSLAM">
+                <video class="VideoSLAM" muted autoplay loop  controls>
+                  <source src="static/videos/SLAM_2.mp4"
+                          type="video/mp4">
+                </video>
+              </span><br /><br/><br/>
+
+              <h4 class="SLAMTitle"><b>ScanNet 0207_00 @ 1.5Hz</b></h4>
+              <span class="VideoSpanPair">
+                <video class="VideoSLAM" muted autoplay loop  controls>
+                  <source src="static/videos/SLAM_3.mp4"
+                          type="video/mp4">
+                </video>
+              </span><br /><br/><br/>
+
+              <h4 class="SLAMTitle"><b>ScanNet 0805_00 @ 1.5Hz</b></h4>
+              <span class="VideoSpanPair">
+                <video class="VideoSLAM" muted autoplay loop  controls>
+                  <source src="static/videos/SLAM_4.mp4"
+                          type="video/mp4">
+                </video>
+              </span><br />
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+    
+        </section>
+
+<!-- <section>
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pairwise Results</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-6">
+        <model-viewer src="http://127.0.0.1:5000/meshes/scene0050_01_2400_3200/scene.glb " shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+  
+ <!--  <model-viewer id="viewer3D" class="canvas" src="static/meshes/scene0207_02_2100_2500/scene.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls environment-image="neutral" bounds="tight" poster="poster.webp" shadow-intensity="1" loading="eager">
+    <div class="progress-bar hide" slot="progress-bar">
+      <div class="update-bar"></div>
+    </div>
+  </model-viewer> -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="https://arxiv.org/pdf/2112.01988.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <!-- <a class="icon-link" href="https://github.com/cangumeli" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
