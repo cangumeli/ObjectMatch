@@ -273,6 +273,11 @@ model-viewer {
   width: 95%;
 }
 
+.SLAMContent {
+  flex: none;
+  width: 98%;
+}
+
 #pipeline {
   width: 90%;
 }

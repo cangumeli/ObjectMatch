@@ -117,12 +117,19 @@ function switchToPrev() {
 
 window.onload = () => {
   var pairVideos = document.getElementsByClassName('VideoPair');
-  console.error(pairVideos);
+  //console.error(pairVideos);
   Array.from(pairVideos).forEach(function (element) {
-    console.error(element);
+    //console.error(element);
     element.playbackRate = 2.0;
     element.play();
   });
+
+  var slamVideos = document.getElementsByClassName('VideoSLAM');
+  Array.from(slamVideos).forEach(function (element) {
+    element.playbackRate = 2.0;
+    element.play();
+  });
+
   return null;
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     // document.getElementById('videoSpan').hidden = true;
