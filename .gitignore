@@ -1,9 +1,10 @@
 .DS_Store
 .DS_Store/
 TestImages/
-dump_features/
+dump_features*/
 checkpoints/
 __pycache__/
 *.txt
 *.json
 *.zip
+vis_*/

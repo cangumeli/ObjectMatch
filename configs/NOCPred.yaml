@@ -1,0 +1,37 @@
+_BASE_: './MaskRCNN.yaml'
+MODEL:
+  ROI_NOC_HEAD:
+    NAME: "ConvUpsampleNOCHead"
+    POOLER_RESOLUTION: 16
+    CONDITION_ON_DEPTH: False
+    CONDITION_ON_NORMAL: False
+    NOC_LOSS_WEIGHT: 4.0
+    PROCRUSTES_LOSS: True
+    PROCRUSTES_ROTATION_WEIGHT: 2.0
+    PROCRUSTES_TRANSLATION_WEIGHT: 20.0
+    USE_DECONV: False
+    USE_PIXEL_SHUFFLE: True
+  #ROI_POSE_HEAD:
+    PREDICT_SCALE: True
+    PREDICT_ALIGNMENT: False
+  BACKBONE:
+    FEATURE_AGGREGATION: 'mean'  # mean, max, sum e.t.c., only for multi-modal inputs (e.g. colors + depths)
+    FEATURE_DROP: 0.0
+  ROI_HEADS:
+    NAME: 'NOCPredROIHeads'
+    WITHOUT_NOCS: False
+  META_ARCHITECTURE: 'NOCPred'
+INPUT:
+  COLOR: True
+  DEPTH: True
+  NORMAL: True
+  DEPTH_CMAP: 'jet_r'
+  DEPTH_DOWN: 1
+  NORMAL_DOWN: 2
+TEST:
+  VAL_STEP: True
+  F1_THRESH: 0.1
+  AP_EVAL: True
+  IMAGE_ALIGNMENT_EVAL: True
+  NOC_AP_EVAL: False
+  NOC_MASK_THRESH: 0.7
