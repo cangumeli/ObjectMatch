@@ -23,7 +23,12 @@ We share pre-trained networks and pre-processed test images [here](https://tumde
 `TestImages.zip` contains a set of test and validation images from ScanNet (Dai et al. '17). We use these images for demos and evaluation. Download and unzip it to the same directory as the code for your convenience.
 
 ## Running Code
-Check out `pair_eval.py` for running pairwise registration. We will provide a simple demo very soon.
+Check out `pair_eval.py` for running pairwise registration. To run and visualize some demo samples we provided, simply run:
+```
+python pair_eval.py --file ./assets/samples.txt --vis
+```
+
+You should see visualizations in the `vis_pairs` folder. Each subfolder contains input frames, NOCs and keypoint matches (where applicable), and a set of meshes that show resulting registrations.
 
 ## Citation
 If you find our work or this repo useful, please cite:
