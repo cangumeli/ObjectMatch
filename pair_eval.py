@@ -25,7 +25,7 @@ def main(args):
     parser.add_argument('--vis', action='store_true')
     parser.add_argument('--vis_folder', default='vis_pairs')
     parser.add_argument('--result_json', default='results.json')
-    parser.add_argument('--silent', action='store_false')
+    parser.add_argument('--silent', action='store_true')
     parser.add_argument('--checkpoints', default='checkpoints')
     args = parser.parse_args(args)
     print(args)
