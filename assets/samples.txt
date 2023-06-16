@@ -1,0 +1,10 @@
+# Both features and objects
+scene0030_00 1800 1900
+scene0169_00 800 1900
+
+# Only objects
+scene0207_02 2100 2500
+scene0616_00 1400 1600
+
+# Only features
+scene0704_00 600 2200
