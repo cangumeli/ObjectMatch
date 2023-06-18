@@ -1,6 +1,8 @@
 # ObjectMatch: ObjectMatch: Robust Registration using Canonical Object Correspondences (CVPR 2023)
 Offical code for our CVPR '23 paper ObjectMatch: Robust Registration using Canonical Object Correspondences. Project website, arxiv paper and video through [this link](https://cangumeli.github.io/ObjectMatch/). This repo is work in progress, stay tuned for training/evaluation scripts, training data, and additional experiments.
 
+![](https://cangumeli.github.io/ObjectMatch/static/images/teaser.jpg)
+
 ## Installation
 This code is mainly developed under Ubuntu 20.04 with an RTX 3090 GPU (w/ CUDA 11) and an Intel Xeon CPU. We use anaconda3 with Python 3.9 as the base Python setup.
 
