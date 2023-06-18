@@ -19,4 +19,4 @@ pip install -r requirements.txt
 
 cd ..
 git clone https://github.com/cangumeli/SuperGluePretrainedNetwork.git
-cd ..
+cd ObjectMatch
