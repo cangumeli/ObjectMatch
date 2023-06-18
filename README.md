@@ -8,7 +8,7 @@ This code is mainly developed under Ubuntu 20.04 with an RTX 3090 GPU (w/ CUDA 1
 
 After cloning this repo, please run:
 ```
-sh setup.sh
+source setup.sh
 ```
 Now, you should have a conda environment names `objectmatch` with all the required libraries. You can activate it by running
 ```
