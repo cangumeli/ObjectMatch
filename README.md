@@ -18,11 +18,14 @@ conda activate objectmatch
 Running the `setup.sh` will also download our [SuperGlue fork](https://github.com/cangumeli/SuperGluePretrainedNetwork) (Sarlin et al. '20) to the parent directory of the code. SuperGlue complements our object correspondences by providing off-the-shelf keypoint matches.
 
 ## Downloading Pre-trained Models and ScanNet Test Images
-We share pre-trained networks and pre-processed test images [here](https://tumde-my.sharepoint.com/:f:/g/personal/can_guemeli_tum_de/EnKippXs4C1Pm8SlMmEmWwIB5oeQZxcRx9oKYE90zvMolQ?e=0XmNou). Both archives are very small with sizes around ~1GB, so do not hesitate to download :)!
+We share pre-trained networks and pre-processed test images [here](https://tumde-my.sharepoint.com/:f:/g/personal/can_guemeli_tum_de/EnKippXs4C1Pm8SlMmEmWwIB5oeQZxcRx9oKYE90zvMolQ?e=0XmNou). Both archives are very small with sizes around ~1GB.
 
 `checkpoints.zip` archive contains the weights of NOC prediction and object identification networks. Unzip it to the root directory of the code.
 
 `TestImages.zip` contains a set of test and validation images from ScanNet (Dai et al. '17). We use these images for demos and evaluation. Download and unzip it to the same directory as the code for your convenience.
+
+### Important Note
+We will provide a more practical and faster weight to download model weights and test images very soon!
 
 ## Running Code
 Check out `pair_eval.py` for running pairwise registration. To run and visualize some demo samples we provided, simply run:
