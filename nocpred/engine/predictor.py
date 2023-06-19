@@ -38,7 +38,7 @@ class Predictor:
     ) -> dict:
 
         if intrinsic is None:
-            intrinsic = '/'.join(file_name.split('/')[:-2] + ['intrinsics_depth.txt'])
+            intrinsic = '/'.join(file_name.split('/')[:-2] + ['intrinsic_depth.txt'])
         if torch.is_tensor(intrinsic):
             intrinsic = intrinsic.cpu().numpy()
         if not isinstance(intrinsic, np.ndarray):

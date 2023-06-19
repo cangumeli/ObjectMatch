@@ -136,9 +136,9 @@ def solve_sift_pair(
 
     if intr is None:
         try:
-            intr = load_matrix(os.path.join(data_dir, scene, 'intrinsics_depth.txt'))
+            intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic_depth.txt'))
         except FileNotFoundError:
-            intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic/intrinsics_depth.txt'))
+            intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic/intrinsic_depth.txt'))
 
     try:
         matches = match_features(feat, depth_images, intr, thresh=thresh, min_points=min_points)

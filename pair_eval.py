@@ -104,7 +104,7 @@ def run_sg(base_dir, samples):
 
             pose0 = load_matrix(os.path.join(base_dir, scene, 'pose', f'{id0}.txt'))
             pose1 = load_matrix(os.path.join(base_dir, scene, 'pose', f'{id1}.txt'))
-            intr = load_matrix(os.path.join(base_dir, scene, 'intrinsics_depth.txt'))[:3, :3]
+            intr = load_matrix(os.path.join(base_dir, scene, 'intrinsic_depth.txt'))[:3, :3]
 
             sg_path = os.path.join(sg_dir, f'{scene}_{id0}_{id1}_matches.npz')
             sg_paths.append(sg_path)

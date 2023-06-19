@@ -59,9 +59,9 @@ def load_point_clouds(
     xy_grid = xy_grid[None].expand(len(trajectory), 2, 480, 640)
 
     try:
-        intr = load_matrix(os.path.join(data_dir, scene, 'intrinsics_depth.txt'))
+        intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic_depth.txt'))
     except FileNotFoundError:
-        intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic/intrinsics_depth.txt'))
+        intr = load_matrix(os.path.join(data_dir, scene, 'intrinsic/intrinsic_depth.txt'))
     intr = torch.as_tensor(intr[:3, :3]).float()
     depth_points = back_project(xy_grid, depths, intr)
 

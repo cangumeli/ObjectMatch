@@ -78,7 +78,7 @@ class Mapper(DatasetMapper):
         for scene_name in os.listdir(image_root):
             if 'scene' not in scene_name:
                 continue
-            intr_file_name = os.path.join(image_root, scene_name, 'intrinsics_depth.txt')
+            intr_file_name = os.path.join(image_root, scene_name, 'intrinsic_depth.txt')
             with open(intr_file_name) as f:
                 intr = np.array(
                     [[float(el) for el in line.strip().split()] for line in f],
