@@ -703,7 +703,7 @@ class PairwiseVisualizer:
     ):
         self.print_fn('Visualizing NOCs...')
         res0, res1 = extra_outputs.obj_instances
-        if not len(res0):
+        if not len(res0) or not len(res1):
             self.print_fn('No valid NOCs!')
             return
         image0 = image0.astype('float32').copy()
